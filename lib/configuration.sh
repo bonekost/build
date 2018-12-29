@@ -87,7 +87,7 @@ fi
 # dropbear needs to be configured differently
 [[ $CRYPTROOT_ENABLE == yes && ($RELEASE == jessie || $RELEASE == xenial) ]] && exit_with_error "Encrypted rootfs is not supported in Jessie or Xenial"
 
-[[ $RELEASE == stretch && $CAN_BUILD_STRETCH != yes ]] && exit_with_error "Building Debian Stretch images with selected kernel is not supported"
+[[ $RELEASE == stretch && $CAN_BUILD_STRETCH != yes ]] && exit_with_error "Building Debian Stretch images with selected kernel is not supported" $KERNELBRANCH
 [[ $RELEASE == bionic && $CAN_BUILD_STRETCH != yes ]] && exit_with_error "Building Ubuntu Bionic images with selected kernel is not supported"
 [[ $RELEASE == bionic && $(lsb_release -sc) == xenial ]] && exit_with_error "Building Ubuntu Bionic images requires a Bionic build host. Please upgrade your host or select a different target OS"
 
