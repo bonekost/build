@@ -1,0 +1,14 @@
+diff --git a/drivers/mtd/nand/nand_hynix.c b/drivers/mtd/nand/nand_hynix.c
+index a66d894..f6f645c 100644
+--- a/drivers/mtd/nand/nand_hynix.c
++++ b/drivers/mtd/nand/nand_hynix.c
+@@ -538,6 +538,9 @@ static int hynix_nand_decode_id(struct nand_chip *chip)
+        if (chip->id.len < 6 || nand_is_slc(chip))
+                return 0;
+ 
++       /* bit6 in id[3] is no longer used to encode the the bus width */
++       chip->options &= ~NAND_BUSWIDTH_16;
++
+        /*
+         * Adjust pagesize. On MLC NANDs, we start at 128KiB not 64KiB,
+         * a simple left shift does the trick.
